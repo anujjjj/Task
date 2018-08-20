@@ -6,12 +6,6 @@
   margin-right: 8px;
 }
 
-.horizontal-line {
-  width: 100%;
-  border-bottom: 1px solid grey;
-  margin: 18px 0px 18px 0px;
-}
-
 .form-control {
   float: left;
 }

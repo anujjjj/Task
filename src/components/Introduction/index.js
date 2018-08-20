@@ -27,7 +27,7 @@ class Introduction extends Component {
                 <textarea rows="4" class="form-control" placeholder="May be you can write about your goals and motivations" />
               </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button class="btn btn-info">Proceed</button>
             </form>
           </div>
         </div>

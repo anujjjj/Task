@@ -6,23 +6,18 @@
   margin-right: 8px;
 }
 
-.horizontal-line {
-  width: 100%;
-  border-bottom: 1px solid grey;
-  margin: 18px 0px 18px 0px;
-}
-
 .form-control {
   float: left;
 }
 
 .form-group-label {
   float: left;
-  /* margin: 8px 0px 8px 0px; */
+  font-weight: 300;
+  margin: 4px 0px 8px 0px;
 }
 
 ::-webkit-input-placeholder {
-  text-align: left;
+  text-align: left !important;
 }
 
 .form-check-label {
@@ -36,8 +31,4 @@
 
 .form-row {
   float: left;
-}
-
-button {
-  margin: 15px 0px 15px 0px;
 }

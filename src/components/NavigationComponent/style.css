@@ -1,0 +1,22 @@
+.navigation {
+  background-color: #F4F4F4;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.NavItem:active {
+  background-color: #64C8C5;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+}
+
+.glyphicon-ok {
+  margin-right: 6px;
+}

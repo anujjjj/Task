@@ -6,8 +6,16 @@
   margin-bottom: 20px;
 }
 
-.NavItem:active {
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
   background-color: #64C8C5;
+  color: white;
+}
+
+.nav-pills>li.active>a>a {
+  color: white;
+  text-decoration: none;
 }
 
 .avatar {

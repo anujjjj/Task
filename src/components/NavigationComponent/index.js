@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, NavItem } from 'react-bootstrap';
 import './style.css';
 import logo from '../../logo.svg';
@@ -27,14 +28,15 @@ class NavigationComponent extends PureComponent {
           bsStyle="pills"
           activeKey={this.state.activeKey}
           onSelect={this.handleSelect} >
-          <NavItem eventKey={1} href="/home">
-            <span class="glyphicon glyphicon-ok" ></span>
+          <NavItem eventKey={1} componentClass={Link} href="/introduction" to="/introduction">
+            <span className="glyphicon glyphicon-ok" ></span>
             Introduction
-        </NavItem >
-          <NavItem eventKey={2} title="Item">
-            <span class="glyphicon glyphicon-ok" ></span>
+          </NavItem>
+
+          <NavItem eventKey={2} title="Item" componentClass={Link} href="/personal_information" to="/personal_information">
+            <span className="glyphicon glyphicon-ok" ></span>
             Personal Information
-        </NavItem>
+          </NavItem>
         </Nav>
       </div>
     );

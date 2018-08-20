@@ -4,30 +4,12 @@
   margin: 18px 0px 18px 0px;
 }
 
-.form-control {
-  float: left;
-}
-
-.form-group-label {
-  float: left;
-  /* margin: 8px 0px 8px 0px; */
-}
-
 ::-webkit-input-placeholder {
   text-align: right;
 }
 
 .form-check-label {
-  overflow: auto;
-  padding-left: 2px;
-}
-
-.form-check-inline {
-  float: left;
-}
-
-.form-row {
-  float: left;
+  padding-right: 6px;
 }
 
 .btn-primary {
@@ -37,4 +19,8 @@
 button {
   margin: 15px 0px 15px 0px;
   background-color: #64C8C5 !important;
+}
+
+.radio-inline {
+  padding-right: 5px;
 }

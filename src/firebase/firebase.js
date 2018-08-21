@@ -12,7 +12,7 @@ const config = {
 firebase.initializeApp(config);
 
 const storageService = firebase.storage();
-const storageRef = storageService.ref();
+export const storageRef = storageService.ref('images');
 const userRef = firebase.database().ref('users');
 
 export const createUser = (info) => {

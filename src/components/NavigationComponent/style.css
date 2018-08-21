@@ -7,7 +7,15 @@
 }
 
 .nav-pills>li>a {
-  border: 1px solid #D4D2D2;
+  color: grey;
+}
+
+#tab1 {
+  border-left: 1px solid #D4D2D2;
+}
+
+#tab2 {
+  border-right: 1px solid #D4D2D2;
 }
 
 .nav-pills>li.active>a,

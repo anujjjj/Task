@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 import logo from '../../useravatar.png';
-
+import { storageRef } from '../../firebase/firebase';
+import FileUploader from 'react-firebase-file-uploader';
 
 class Introduction extends Component {
   constructor(props) {
@@ -10,7 +11,10 @@ class Introduction extends Component {
     this.state = {
       profileUrl: "",
       name: "",
-      description: ""
+      description: "",
+      avatar: '',
+      isUploading: false,
+      progress: 0
     }
 
     this.onNameChange = this.onNameChange.bind(this);
@@ -27,6 +31,20 @@ class Introduction extends Component {
       });
     }
   }
+
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+
+  handleProgress = (progress) => this.setState({ progress });
+
+  handleUploadError = (error) => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  }
+
+  handleUploadSuccess = (filename) => {
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
+    storageRef.child(filename).getDownloadURL().then(url => this.setState({ profileUrl: url }));
+  };
 
   onNameChange(e) {
     this.setState({ name: e.target.value });
@@ -59,6 +77,7 @@ class Introduction extends Component {
 
 
   render() {
+    console.log(this.state);
     return (
       <div className="container">
         <div className="row">
@@ -67,8 +86,18 @@ class Introduction extends Component {
               <div className="form-group">
                 <div className="col-sm-3">
                   <label >
-                    <img src={logo} alt="Avatar" className="avatar" />
-                    <input type="file" onChange={this.fileSelectedHandler} id="profile_photo" />
+                    <img src={this.state.profileUrl ? this.state.profileUrl : logo} alt="Avatar" className="avatar" />
+                    <FileUploader
+                      hidden
+                      accept="image/*"
+                      name="avatar"
+                      randomizeFilename
+                      storageRef={storageRef}
+                      onUploadStart={this.handleUploadStart}
+                      onUploadError={this.handleUploadError}
+                      onUploadSuccess={this.handleUploadSuccess}
+                      onProgress={this.handleProgress}
+                    />
                   </label>
                 </div>
                 <div class="col-sm-9">

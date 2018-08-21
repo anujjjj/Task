@@ -23,17 +23,17 @@ class NavigationComponent extends PureComponent {
           bsStyle="pills"
         >
           <LinkContainer to="/introduction">
-            <NavItem eventKey={1}>
+            <NavItem eventKey={1} id="tab1">
               <span className="glyphicon glyphicon-ok" ></span>
               Introduction
-</NavItem>
+            </NavItem>
           </LinkContainer>
 
           <LinkContainer to="/personal_information">
-            <NavItem eventKey={2}>
+            <NavItem eventKey={2} id="tab2">
               <span className="glyphicon glyphicon-ok" ></span>
               Personal Information
-</NavItem>
+            </NavItem>
           </LinkContainer>
         </Nav>
       </div>

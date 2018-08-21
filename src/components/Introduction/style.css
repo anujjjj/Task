@@ -4,6 +4,7 @@
   height: 80px;
   border-radius: 50%;
   margin-right: 10px;
+  border: 1px solid #D4D2D2;
 }
 
 .avatar:hover {
@@ -22,10 +23,6 @@
 
 textarea::-webkit-input-placeholder {
   text-align: left !important;
-}
-
-#profile_photo {
-  display: none;
 }
 
 .form-check-label {

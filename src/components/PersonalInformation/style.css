@@ -26,21 +26,21 @@
   margin-right: 0px !important;
 }
 
-.col-sm-3 {
+.override .col-sm-3 {
   width: 22% !important;
   padding-right: 0px !important;
 }
 
-.col-sm-2 {
+.override .col-sm-2 {
   width: 14% !important;
   padding-right: 0px !important;
 }
 
 @media screen and (max-width: 768px) {
-  .col-sm-3 {
+  .override .col-sm-3 {
     width: 100% !important;
   }
-  .col-sm-2 {
+  .override .col-sm-2 {
     width: 100% !important;
   }
 }

@@ -6,6 +6,10 @@
   margin-right: 10px;
 }
 
+.avatar:hover {
+  cursor: pointer;
+}
+
 .form-control {
   float: left;
 }
@@ -18,6 +22,10 @@
 
 textarea::-webkit-input-placeholder {
   text-align: left !important;
+}
+
+#profile_photo {
+  display: none;
 }
 
 .form-check-label {

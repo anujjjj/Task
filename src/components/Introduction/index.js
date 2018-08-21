@@ -57,6 +57,7 @@ class Introduction extends Component {
     }
   }
 
+
   render() {
     return (
       <div className="container">
@@ -65,7 +66,10 @@ class Introduction extends Component {
             <form>
               <div className="form-group">
                 <div className="col-sm-3">
-                  <img src={logo} alt="Avatar" className="avatar" />
+                  <label >
+                    <img src={logo} alt="Avatar" className="avatar" />
+                    <input type="file" onChange={this.fileSelectedHandler} id="profile_photo" />
+                  </label>
                 </div>
                 <div class="col-sm-9">
                   <label for="name" className="form-group-label">Your Name </label>

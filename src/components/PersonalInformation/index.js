@@ -136,7 +136,7 @@ class PersonalInformation extends Component {
                   <label className="form-group-label">Ethnicity</label>
                 </div>
                 <div className="col-xs-12">
-                  <div className="row">
+                  <div className="row override">
                     <div className="col-sm-3 col-xs-12">
                       <div className="form-check form-check-inline">
                         <label className="radio-inline" for="ethnicityRadio1">
@@ -170,7 +170,7 @@ class PersonalInformation extends Component {
                   <label className="form-group-label">Race</label>
                 </div>
                 <div className="col-xs-12">
-                  <div className="row">
+                  <div className="row override" >
                     <div className="col-sm-3 col-xs-12">
                       <div className="form-check form-check-inline">
                         <label className="radio-inline" for="raceRadio1">
@@ -236,7 +236,7 @@ class PersonalInformation extends Component {
                   <label className="form-group-label">Sex</label>
                 </div>
                 <div className="col-xs-12">
-                  <div className="row">
+                  <div className="row override">
                     <div className="col-sm-3 col-xs-12">
                       <div className="form-check form-check-inline">
                         <label className="radio-inline" for="sexRadio1">

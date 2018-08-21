@@ -5,8 +5,6 @@ import { createUser } from '../../firebase/firebase';
 class PersonalInformation extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-
     this.state = {
       state: "",
       age: "",
@@ -30,7 +28,13 @@ class PersonalInformation extends Component {
 
   componentDidMount() {
     if (this.state.info === null) {
-      this.props.history.goBack();
+      if (localStorage.getItem("info")) {
+        const info = JSON.parse(localStorage.getItem("info"));
+        this.setState({ info });
+      }
+      else {
+        this.props.history.goBack();
+      }
     }
   }
 
@@ -64,15 +68,14 @@ class PersonalInformation extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const name = this.props.location.state.info.name;
-    const profileURL = this.props.location.state.info.profileURL;
-    const description = this.props.location.state.info.description;
-    const { state, age, ethnicity, race, sex, height, weight } = this.state;
 
-    const info = {
+    const { state, age, ethnicity, race, sex, height, weight, info } = this.state;
+    const { name, description, profileUrl } = info;
+
+    const user = {
       name,
-      profileURL,
       description,
+      profileUrl,
       state,
       age,
       ethnicity,
@@ -81,9 +84,9 @@ class PersonalInformation extends Component {
       height,
       weight
     }
+    console.log("info ", info);
 
-
-    createUser(info)
+    createUser(user)
       .then((data) => {
         console.log(data);
         console.log("Data submitted");
@@ -275,7 +278,7 @@ class PersonalInformation extends Component {
 
               <div className="clearfix"></div>
               <div className="row">
-                <button className="btn btn-primary">Proceed</button>
+                <button className="btn btn-primary" onClick={this.handleSubmit}>Proceed</button>
               </div>
 
             </form>

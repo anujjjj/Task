@@ -2,6 +2,41 @@ import React, { Component } from 'react';
 import './style.css';
 
 class PersonalInformation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      state: "",
+      age: "",
+      ethnicity: "",
+      race: "",
+      sex: "",
+      height: "",
+      weight: ""
+    }
+
+    this.onStateChange = this.onStateChange.bind(this);
+    this.onAgeChange = this.onAgeChange.bind(this);
+    this.onHeightChange = this.onHeightChange.bind(this);
+    this.onWeightChange = this.onWeightChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  onStateChange(e) {
+    this.setState({ state: e.target.value });
+  }
+
+  onAgeChange(e) {
+    this.setState({ age: e.target.value });
+  }
+
+  onHeightChange(e) {
+    this.setState({ height: e.target.value });
+  }
+
+  onWeightChange(e) {
+    this.setState({ weight: e.target.value });
+  }
+
   render() {
     return (
       <div className="container">
@@ -12,15 +47,19 @@ class PersonalInformation extends Component {
               <div className="form-group col-xs-6">
                 <label for="state" className="form-group-label">State</label>
 
-                <input type="text" class="form-control" id="state" />
+                <input type="text" class="form-control" id="state"
+                  onChange={this.onStateChange}
+                />
               </div>
               <div className="clearfix"></div>
               <div className="horizontal-line"></div>
 
               <div className="form-group col-xs-6">
 
-                <label for="state" className="form-group-label">Age</label>
-                <input type="number" class="form-control" id="age" />
+                <label for="age" className="form-group-label">Age</label>
+                <input type="number" className="form-control" id="age"
+                  onChange={this.onAgeChange}
+                />
               </div>
               <div className="clearfix"></div>
               <div className="horizontal-line"></div>
@@ -115,7 +154,6 @@ class PersonalInformation extends Component {
                   </div>
 
                   <div className="col-sm-6">
-
                     <div className="form-check form-check-inline">
                       <label className="form-check-label" for="sexRadio2">
                         <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio2" value="Female" />
@@ -123,7 +161,6 @@ class PersonalInformation extends Component {
                       <span class="checkmark"></span>
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -166,19 +203,23 @@ class PersonalInformation extends Component {
               <div className="horizontal-line"></div>
 
               <div className="form-group col-xs-6">
-                <label for="state" className="form-group-label">Height</label>
-                <input type="number" className="form-control" id="height" placeholder="in-inches" />
+                <label className="form-group-label">Height</label>
+                <input type="number" className="form-control" id="height" placeholder="in-inches"
+                  onChange={this.onHeightChange}
+                />
               </div>
               <div className="clearfix"></div>
               <div className="horizontal-line"></div>
               <div className="form-group col-xs-6">
                 <label for="state" className="form-group-label">Weight</label>
-                <input type="number" className="form-control" id="weight" placeholder="in-pounds" />
+                <input type="number" className="form-control" id="weight" placeholder="in-pounds"
+                  onChange={this.onWeightChange}
+                />
               </div>
 
               <div className="clearfix"></div>
               <div className="row">
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button className="btn btn-primary">Proceed</button>
               </div>
 
             </form>

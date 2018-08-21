@@ -28,11 +28,11 @@ class Introduction extends Component {
     if (name !== "") {
       createUser(name, profileUrl, description)
         .then((data) => {
-          this.props.history.replace('/personal_information')
+          this.props.history.replace('/personal_information');
         })
         .catch(function (error) {
           console.log(error);
-        })
+        });
     }
   }
 
@@ -64,7 +64,8 @@ class Introduction extends Component {
                 <textarea rows="4" class="form-control" placeholder="May be you can write about your goals and motivations" />
               </div>
 
-              <button class="btn btn-primary" onClick={this.handleSubmit}>Proceed</button>
+              <button className="btn btn-primary" onClick={this.handleSubmit}>Proceed</button>
+              <div ></div>
             </form>
           </div>
         </div>

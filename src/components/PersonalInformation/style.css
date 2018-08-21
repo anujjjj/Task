@@ -8,11 +8,7 @@
 
 .btn-primary {
   background-color: #64C8C5 !important;
-}
-
-button {
-  margin: 15px 0px 15px 0px;
-  background-color: #64C8C5 !important;
+  margin-bottom: 30px;
 }
 
 .radio-inline {

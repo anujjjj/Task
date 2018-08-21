@@ -13,7 +13,6 @@ firebase.initializeApp(config);
 
 const userRef = firebase.database().ref('users');
 
-
 export const createUser = (name, profileUrl, description) => {
   console.log(name);
   return userRef.push({

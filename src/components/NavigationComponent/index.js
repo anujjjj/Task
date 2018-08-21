@@ -13,6 +13,9 @@ class NavigationComponent extends PureComponent {
     super(props);
   }
   render() {
+    if (this.props.location.pathname === "/successfull") {
+      return (null);
+    }
     return (
       <div>
         <Nav

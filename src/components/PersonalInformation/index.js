@@ -90,16 +90,15 @@ class PersonalInformation extends Component {
       .then((data) => {
         console.log(data);
         console.log("Data submitted");
-        // this.props.history.push({
-        //   pathname: '/personal_information',
-        //   state: {
-        //     info
-        //   }
-        // });
+        this.props.history.replace({
+          pathname: '/successfull',
+        });
       })
       .catch(function (error) {
         console.log(error);
       });
+
+
   }
 
 

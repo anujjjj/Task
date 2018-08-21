@@ -6,10 +6,15 @@
   margin-bottom: 20px;
 }
 
+.nav-pills>li>a {
+  border: 1px solid #D4D2D2;
+}
+
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:hover,
 .nav-pills>li.active>a:focus {
   background-color: #64C8C5;
+  border: 1px solid #64C8C5;
   color: white;
 }
 

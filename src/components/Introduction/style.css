@@ -12,11 +12,11 @@
 
 .form-group-label {
   float: left;
-  font-weight: 300;
+  font-weight: 400;
   margin: 4px 0px 8px 0px;
 }
 
-::-webkit-input-placeholder {
+textarea::-webkit-input-placeholder {
   text-align: left !important;
 }
 

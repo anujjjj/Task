@@ -6,6 +6,10 @@
   padding-right: 6px;
 }
 
+.form-group-label {
+  font-weight: 400px;
+}
+
 .btn-primary {
   background-color: #64C8C5 !important;
   margin-bottom: 30px;
@@ -14,6 +18,7 @@
 
 .radio-inline {
   padding-right: 5px;
+  font-size: 13px;
 }
 
 .no-margin {

@@ -11,10 +11,9 @@ class CustomNavbar extends PureComponent {
           <Navbar.Brand>
             React-Firebase
           </Navbar.Brand>
-          <Navbar.Toggle />
+
         </Navbar.Header>
-        <Navbar.Collapse>
-        </Navbar.Collapse>
+
       </Navbar>
     );
   }

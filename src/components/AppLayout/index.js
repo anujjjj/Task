@@ -14,16 +14,17 @@ class AppLayout extends Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-          <div>
+          <React.Fragment>
+
             <Navbar />
             <NavigationComponent />
             <Switch>
               <Route path="/introduction" component={Introduction} exact={true} />
               <Route path="/personal_information" component={PersonalInformation} exact={true} />
-              <Redirect to="/introduction" from="/" />
-              <Route path="*" component={NotFound} />
+              {/* <Redirect to="/introduction" from="/" />
+              <Route path="*" component={NotFound} /> */}
             </Switch>
-          </div>
+          </React.Fragment>
         </BrowserRouter>
       </React.Fragment >
     );

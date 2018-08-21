@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 import logo from '../../useravatar.png';
-import { createUser } from '../../firebase/firebase';
+
 
 class Introduction extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Introduction extends Component {
     }
 
     this.onNameChange = this.onNameChange.bind(this);
+    this.onDescriptionChange = this.onDescriptionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -21,18 +22,27 @@ class Introduction extends Component {
     this.setState({ name: e.target.value });
   }
 
+  onDescriptionChange(e) {
+    this.setState({ description: e.target.value });
+  }
+
   handleSubmit(e) {
+    e.preventDefault();
     const { profileUrl, name, description } = this.state;
     const that = this;
 
     if (name !== "") {
-      createUser(name, profileUrl, description)
-        .then((data) => {
-          this.props.history.replace('/personal_information');
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      const info = {
+        name,
+        description,
+        profileUrl
+      }
+      this.props.history.push({
+        pathname: '/personal_information',
+        state: {
+          info
+        }
+      });
     }
   }
 
@@ -61,7 +71,9 @@ class Introduction extends Component {
               </div>
               <div className="form-row">
                 <label for="description" className="form-group-label">Write a short description about yourself</label>
-                <textarea rows="4" class="form-control" placeholder="May be you can write about your goals and motivations" />
+                <textarea rows="4" class="form-control" placeholder="May be you can write about your goals and motivations"
+                  onChange={this.onDescriptionChange}
+                />
               </div>
 
               <button className="btn btn-primary" onClick={this.handleSubmit}>Proceed</button>

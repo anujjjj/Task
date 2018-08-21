@@ -15,7 +15,6 @@ class AppLayout extends Component {
       <React.Fragment>
         <BrowserRouter>
           <React.Fragment>
-
             <Navbar />
             <NavigationComponent />
             <Switch>

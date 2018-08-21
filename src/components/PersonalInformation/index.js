@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './style.css';
+import { createUser } from '../../firebase/firebase';
 
 class PersonalInformation extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
+
     this.state = {
       state: "",
       age: "",
@@ -11,14 +14,24 @@ class PersonalInformation extends Component {
       race: "",
       sex: "",
       height: "",
-      weight: ""
+      weight: "",
+      info: props.location.state ? props.location.state.info ? props.location.state.info : null : null
     }
 
     this.onStateChange = this.onStateChange.bind(this);
     this.onAgeChange = this.onAgeChange.bind(this);
     this.onHeightChange = this.onHeightChange.bind(this);
     this.onWeightChange = this.onWeightChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.onEthnicityChange = this.onEthnicityChange.bind(this);
+    this.onRaceChange = this.onRaceChange.bind(this);
+    this.onSexChange = this.onSexChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.info === null) {
+      this.props.history.goBack();
+    }
   }
 
   onStateChange(e) {
@@ -29,6 +42,10 @@ class PersonalInformation extends Component {
     this.setState({ age: e.target.value });
   }
 
+  onEthnicityChange(e) {
+    this.setState({ ethnicity: e.target.value });
+  }
+
   onHeightChange(e) {
     this.setState({ height: e.target.value });
   }
@@ -36,6 +53,52 @@ class PersonalInformation extends Component {
   onWeightChange(e) {
     this.setState({ weight: e.target.value });
   }
+
+  onSexChange(e) {
+    this.setState({ sex: e.target.value });
+  }
+
+  onRaceChange(e) {
+    this.setState({ race: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const name = this.props.location.state.info.name;
+    const profileURL = this.props.location.state.info.profileURL;
+    const description = this.props.location.state.info.description;
+    const { state, age, ethnicity, race, sex, height, weight } = this.state;
+
+    const info = {
+      name,
+      profileURL,
+      description,
+      state,
+      age,
+      ethnicity,
+      race,
+      sex,
+      height,
+      weight
+    }
+
+
+    createUser(info)
+      .then((data) => {
+        console.log(data);
+        console.log("Data submitted");
+        // this.props.history.push({
+        //   pathname: '/personal_information',
+        //   state: {
+        //     info
+        //   }
+        // });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 
   render() {
     return (
@@ -71,14 +134,21 @@ class PersonalInformation extends Component {
                   <div className="col-xs-6 ">
                     <div className="form-check form-check-inline">
                       <label className="radio-inline" for="ethnicityRadio1">
-                        <input className="form-check-input" type="radio" name="ethnicityRadio" id="ethnicityRadio1" value="Hispanic or Latino" />Hispanic or Latino
+                        <input className="form-check-input" type="radio" name="ethnicityRadio" id="ethnicityRadio1" value="Hispanic or Latino"
+                          checked={this.state.ethnicity === "Hispanic or Latino"}
+                          onChange={this.onEthnicityChange}
+                        />
+                        Hispanic or Latino
                           </label>
                     </div>
                   </div>
                   <div className="col-xs-6">
                     <div className="form-check form-check-inline">
                       <label className="radio-inline" for="ethnicityRadio2">
-                        <input className="form-check-input" type="radio" name="ethnicityRadio" id="ethnicityRadio" value="Non-Hispanic or Non-Latino" />Non-Hispanic or Non-Latino
+                        <input className="form-check-input" type="radio" name="ethnicityRadio" id="ethnicityRadio" value="Non-Hispanic or Non-Latino"
+                          checked={this.state.ethnicity === "Non-Hispanic or Non-Latino"}
+                          onChange={this.onEthnicityChange}
+                        />Non-Hispanic or Non-Latino
                         </label>
                     </div>
                   </div>
@@ -97,21 +167,30 @@ class PersonalInformation extends Component {
 
                     <div className="form-check form-check-inline form-check-input">
                       <label className="radio-inline" for="raceRadio1">
-                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio1" value="option1" />
+                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio1" value="American Indian"
+                          checked={this.state.race === "American Indian"}
+                          onChange={this.onRaceChange}
+                        />
                         American Indian</label>
                     </div>
                   </div>
                   <div className="col-sm-2">
                     <div className="form-check form-check-inline">
                       <label className="radio-inline" for="raceRadio2">
-                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio2" value="option2" />
+                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio2" value="Asian"
+                          checked={this.state.race === "Asian"}
+                          onChange={this.onRaceChange}
+                        />
                         Asian</label>
                     </div>
                   </div>
                   <div className="col-sm-2">
                     <div className="form-check form-check-inline">
                       <label className="radio-inline" for="raceRadio3">
-                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio3" value="option3" />
+                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio3" value="Native Hawaiian or Other Pacific Islander"
+                          checked={this.state.race === "Native Hawaiian or Other Pacific Islander"}
+                          onChange={this.onRaceChange}
+                        />
                         Native Hawaiian or Other Pacific Islander</label>
                     </div>
                   </div>
@@ -119,7 +198,10 @@ class PersonalInformation extends Component {
                   <div className="col-sm-2">
                     <div className="form-check form-check-inline">
                       <label className="radio-inline" for="raceRadio4">
-                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio4" value="option3" />
+                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio4" value="Black or African American"
+                          checked={this.state.race === "Black or African American"}
+                          onChange={this.onRaceChange}
+                        />
                         Black or African American</label>
                     </div>
                   </div>
@@ -127,7 +209,10 @@ class PersonalInformation extends Component {
                   <div className="col-sm-2">
                     <div className="form-check form-check-inline">
                       <label className="radio-inline" for="raceRadio5">
-                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio5" value="option3" />
+                        <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio5" value="White"
+                          checked={this.state.race === "White"}
+                          onChange={this.onRaceChange}
+                        />
                         White</label>
                     </div>
                   </div>
@@ -146,8 +231,11 @@ class PersonalInformation extends Component {
                   <div className="col-sm-6">
 
                     <div className="form-check form-check-inline">
-                      <label className="form-check-label" for="sexRadio1">
-                        <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio1" value="Male" />
+                      <label className="radio-inline" for="sexRadio1">
+                        <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio1" value="Male"
+                          checked={this.state.sex === "Male"}
+                          onChange={this.onSexChange}
+                        />
                         Male</label>
                       <span class="checkmark"></span>
                     </div>
@@ -155,8 +243,11 @@ class PersonalInformation extends Component {
 
                   <div className="col-sm-6">
                     <div className="form-check form-check-inline">
-                      <label className="form-check-label" for="sexRadio2">
-                        <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio2" value="Female" />
+                      <label className="radio-inline" for="sexRadio2">
+                        <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio2" value="Female"
+                          checked={this.state.sex === "Female"}
+                          onChange={this.onSexChange}
+                        />
                         Female</label>
                       <span class="checkmark"></span>
                     </div>
@@ -164,41 +255,6 @@ class PersonalInformation extends Component {
                 </div>
               </div>
 
-              <div className="clearfix"></div>
-              <div className="horizontal-line"></div>
-
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <label for="input-type">Account Type *:</label>
-                  <div id="input-type" class="row">
-                    <div class="col-sm-2">
-                      <label class="radio-inline">
-                        <input name="account_type" id="input-type-student" value="Student" type="radio" />Student
-                      </label>
-                    </div>
-                    <div class="col-sm-2">
-                      <label class="radio-inline">
-                        <input name="account_type" id="input-type-tutor" value="Tutor" type="radio" />Tutor
-                      </label>
-                    </div>
-                    <div class="col-sm-2">
-                      <label class="radio-inline">
-                        <input name="account_type" id="input-type-tutor" value="Tutor" type="radio" />Tutor
-                      </label>
-                    </div>
-                    <div class="col-sm-2">
-                      <label class="radio-inline">
-                        <input name="account_type" id="input-type-tutor" value="Tutor" type="radio" />Tutor
-                      </label>
-                    </div>
-                    <div class="col-sm-2">
-                      <label class="radio-inline">
-                        <input name="account_type" id="input-type-tutor" value="Tutor" type="radio" />Tutor
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className="clearfix"></div>
               <div className="horizontal-line"></div>
 

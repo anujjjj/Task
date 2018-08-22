@@ -6,7 +6,6 @@ class Successfull extends Component {
     return (
       <div>
         <h5 style={{ color: "#009900" }}>Congratulations , your registration is completed</h5>
-
       </div>
     );
   }
@@ -14,6 +13,5 @@ class Successfull extends Component {
     localStorage.removeItem("info");
   }
 }
-
 
 export default Successfull;

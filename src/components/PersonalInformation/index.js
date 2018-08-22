@@ -174,12 +174,11 @@ class PersonalInformation extends Component {
         height,
         weight
       }
-      console.log("info ", info);
+
 
       createUser(user)
         .then((data) => {
-          console.log(data);
-          console.log("Data submitted");
+
           this.props.history.replace({
             pathname: '/successfull',
           });

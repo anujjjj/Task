@@ -50,8 +50,9 @@ class Introduction extends Component {
   }
 
   handleUploadSuccess = (filename) => {
-    this.setState({ avatar: filename, progress: 100, isUploading: false });
-    storageRef.child(filename).getDownloadURL().then(url => this.setState({ profileUrl: url }));
+    this.setState({ avatar: filename, progress: 100 });
+    storageRef.child(filename).getDownloadURL()
+      .then(url => this.setState({ profileUrl: url, isUploading: false }));
   };
 
   onNameChange(e) {
@@ -122,7 +123,6 @@ class Introduction extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
       <div className="container">
         <div className="row">
@@ -133,8 +133,10 @@ class Introduction extends Component {
                   <label >
 
                     <div>
-                      {this.state.isUploading ?
-                        <div className="loader"></div> : <img src={this.state.profileUrl ? this.state.profileUrl : logo} alt="Avatar" className="avatar" />
+                      {
+                        this.state.isUploading ?
+                          (<div className="loader"></div>) :
+                          <img src={this.state.profileUrl ? this.state.profileUrl : logo} alt="Avatar" className="avatar" />
                       }
                     </div>
                     <FileUploader

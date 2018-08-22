@@ -16,7 +16,6 @@ export const storageRef = storageService.ref('images');
 const userRef = firebase.database().ref('users');
 
 export const createUser = (info) => {
-
   return userRef.push(info)
 }
 

@@ -139,22 +139,25 @@ class PersonalInformation extends Component {
                   <div className="row override">
                     <div className="col-sm-3 col-xs-12">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="ethnicityRadio1">
+                        <label className="radio-inline radio-container" for="ethnicityRadio1">
                           <input className="form-check-input" type="radio" name="ethnicityRadio" id="ethnicityRadio1" value="Hispanic or Latino"
                             checked={this.state.ethnicity === "Hispanic or Latino"}
                             onChange={this.onEthnicityChange}
                           />
+                          <span class="checkmark"></span>
                           Hispanic or Latino
                         </label>
                       </div>
                     </div>
                     <div className="col-sm-6 col-xs-12">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="ethnicityRadio2">
+                        <label className="radio-inline radio-container" for="ethnicityRadio">
                           <input className="form-check-input" type="radio" name="ethnicityRadio" id="ethnicityRadio" value="Non-Hispanic or Non-Latino"
                             checked={this.state.ethnicity === "Non-Hispanic or Non-Latino"}
                             onChange={this.onEthnicityChange}
-                          />Non-Hispanic or Non-Latino
+                          />
+                          <span class="checkmark"></span>
+                          Non-Hispanic or Non-Latino
                         </label>
                       </div>
                     </div>
@@ -173,53 +176,58 @@ class PersonalInformation extends Component {
                   <div className="row override" >
                     <div className="col-sm-3 col-xs-12">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="raceRadio1">
+                        <label className="radio-inline radio-container" for="raceRadio1">
                           <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio1" value="American Indian"
                             checked={this.state.race === "American Indian"}
                             onChange={this.onRaceChange}
                           />
+                          <span class="checkmark"></span>
                           American Indian</label>
                       </div>
                     </div>
                     <div className="col-sm-2 col-xs-12">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="raceRadio2">
+                        <label className="radio-inline radio-container" for="raceRadio2">
                           <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio2" value="Asian"
                             checked={this.state.race === "Asian"}
                             onChange={this.onRaceChange}
                           />
+                          <span class="checkmark"></span>
                           Asian</label>
                       </div>
                     </div>
                     <div className="col-sm-3 col-xs-12 override-sm3">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="raceRadio3">
+                        <label className="radio-inline radio-container" for="raceRadio3">
                           <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio3" value="Native Hawaiian or Other Pacific Islander"
                             checked={this.state.race === "Native Hawaiian or Other Pacific Islander"}
                             onChange={this.onRaceChange}
                           />
+                          <span class="checkmark"></span>
                           Native Hawaiian or Other Pacific Islander</label>
                       </div>
                     </div>
 
                     <div className="col-sm-3 col-xs-12 override-sm3">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="raceRadio4">
+                        <label className="radio-inline radio-container" for="raceRadio4">
                           <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio4" value="Black or African American"
                             checked={this.state.race === "Black or African American"}
                             onChange={this.onRaceChange}
                           />
+                          <span class="checkmark"></span>
                           Black or African American</label>
                       </div>
                     </div>
 
                     <div className="col-sm-2 col-xs-12 override-sm3">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="raceRadio5">
+                        <label className="radio-inline radio-container" for="raceRadio5">
                           <input className="form-check-input" type="radio" name="raceRadioOptions" id="raceRadio5" value="White"
                             checked={this.state.race === "White"}
                             onChange={this.onRaceChange}
                           />
+                          <span class="checkmark"></span>
                           White</label>
                       </div>
                     </div>
@@ -239,24 +247,24 @@ class PersonalInformation extends Component {
                   <div className="row override">
                     <div className="col-sm-3 col-xs-12">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="sexRadio1">
+                        <label className="radio-inline radio-container" for="sexRadio1">
                           <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio1" value="Male"
                             checked={this.state.sex === "Male"}
                             onChange={this.onSexChange}
                           />
+                          <span class="checkmark"></span>
                           Male</label>
-                        <span class="checkmark"></span>
                       </div>
                     </div>
                     <div className="col-sm-4 col-xs-12">
                       <div className="form-check form-check-inline">
-                        <label className="radio-inline" for="sexRadio2">
+                        <label className="radio-inline radio-container" for="sexRadio2">
                           <input className="form-check-input" type="radio" name="sexRadioOptions" id="sexRadio2" value="Female"
                             checked={this.state.sex === "Female"}
                             onChange={this.onSexChange}
                           />
+                          <span class="checkmark"></span>
                           Female</label>
-                        <span class="checkmark"></span>
                       </div>
                     </div>
                   </div>

@@ -98,7 +98,7 @@ class Introduction extends Component {
     e.preventDefault();
 
     if (!this.handleValidation()) {
-      alert("Form has errors");
+      // alert("Form has errors");
     }
     else {
       const { profileUrl, name, description } = this.state;

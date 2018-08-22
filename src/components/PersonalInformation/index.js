@@ -13,7 +13,8 @@ class PersonalInformation extends Component {
       sex: "",
       height: "",
       weight: "",
-      info: props.location.state ? props.location.state.info ? props.location.state.info : null : null
+      info: props.location.state ? props.location.state.info ? props.location.state.info : null : null,
+      errors: {}
     }
 
     this.onStateChange = this.onStateChange.bind(this);
@@ -23,6 +24,7 @@ class PersonalInformation extends Component {
     this.onEthnicityChange = this.onEthnicityChange.bind(this);
     this.onRaceChange = this.onRaceChange.bind(this);
     this.onSexChange = this.onSexChange.bind(this);
+    this.handleValidation = this.handleValidation.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -40,65 +42,153 @@ class PersonalInformation extends Component {
 
   onStateChange(e) {
     this.setState({ state: e.target.value });
+    let errors = this.state.errors;
+    errors.state = "";
+    this.setState({ errors });
   }
 
   onAgeChange(e) {
     this.setState({ age: e.target.value });
+    let errors = this.state.errors;
+    errors.age = "";
+    this.setState({ errors });
   }
 
   onEthnicityChange(e) {
     this.setState({ ethnicity: e.target.value });
+    let errors = this.state.errors;
+    errors.ethnicity = "";
+    this.setState({ errors });
   }
 
   onHeightChange(e) {
     this.setState({ height: e.target.value });
+    let errors = this.state.errors;
+    errors.height = "";
+    this.setState({ errors });
   }
 
   onWeightChange(e) {
     this.setState({ weight: e.target.value });
+    let errors = this.state.errors;
+    errors.weight = "";
+    this.setState({ errors });
   }
 
   onSexChange(e) {
     this.setState({ sex: e.target.value });
+    let errors = this.state.errors;
+    errors.sex = "";
+    this.setState({ errors });
   }
 
   onRaceChange(e) {
     this.setState({ race: e.target.value });
+    let errors = this.state.errors;
+    errors.race = "";
+    this.setState({ errors });
+  }
+
+  handleValidation() {
+    let formIsValid = true;
+    let errors = {};
+    let state = this.state.state;
+    let age = this.state.age;
+    let ethnicity = this.state.ethnicity;
+    let race = this.state.race;
+    let sex = this.state.sex;
+    let height = this.state.height;
+    let weight = this.state.weight;
+
+    if (!state) {
+      formIsValid = false;
+      errors["state"] = "Cannot be empty";
+    }
+
+    if (!age) {
+      formIsValid = false;
+      errors["age"] = "Cannot be empty";
+    }
+    else if (age <= 0) {
+      formIsValid = false;
+      errors["age"] = "Age should be greater than zero";
+    }
+
+    if (!ethnicity) {
+      formIsValid = false;
+      errors["ethnicity"] = "Please select an option";
+    }
+
+    if (!race) {
+      formIsValid = false;
+      errors["race"] = "Please select an option";
+    }
+    if (!sex) {
+      formIsValid = false;
+      errors["sex"] = "Please select an option";
+    }
+    if (!height) {
+      formIsValid = false;
+      errors["height"] = "Please select an option";
+    }
+
+    else if (height <= 0) {
+      formIsValid = false;
+      errors["height"] = "Height should be greater than zero";
+    }
+
+    if (!weight) {
+      formIsValid = false;
+      errors["weight"] = "Please select an option";
+    }
+
+    else if (weight <= 0) {
+      formIsValid = false;
+      errors["weight"] = "Weight should be greater than zero";
+    }
+
+    this.setState({ errors: errors });
+    return formIsValid;
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    const { state, age, ethnicity, race, sex, height, weight, info } = this.state;
-    const { name, description, profileUrl } = info;
-
-    const user = {
-      name,
-      description,
-      profileUrl,
-      state,
-      age,
-      ethnicity,
-      race,
-      sex,
-      height,
-      weight
+    if (!this.handleValidation()) {
+      alert("Form has errors");
     }
-    console.log("info ", info);
+    else {
 
-    createUser(user)
-      .then((data) => {
-        console.log(data);
-        console.log("Data submitted");
-        this.props.history.replace({
-          pathname: '/successfull',
+      const { state, age, ethnicity, race, sex, height, weight, info } = this.state;
+      const { name, description, profileUrl } = info;
+
+      const user = {
+        name,
+        description,
+        profileUrl,
+        state,
+        age,
+        ethnicity,
+        race,
+        sex,
+        height,
+        weight
+      }
+      console.log("info ", info);
+
+      createUser(user)
+        .then((data) => {
+          console.log(data);
+          console.log("Data submitted");
+          this.props.history.replace({
+            pathname: '/successfull',
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
         });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
 
-
+    }
   }
 
 
@@ -115,6 +205,7 @@ class PersonalInformation extends Component {
                   <input type="text" class="form-control" id="state"
                     onChange={this.onStateChange}
                   />
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["state"]}</span>
                 </div>
               </div>
               <div className="clearfix"></div>
@@ -126,6 +217,7 @@ class PersonalInformation extends Component {
                   <input type="number" className="form-control" id="age"
                     onChange={this.onAgeChange}
                   />
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["age"]}</span>
                 </div>
               </div>
               <div className="clearfix"></div>
@@ -134,6 +226,7 @@ class PersonalInformation extends Component {
               <div className="form-group row no-margin">
                 <div className="col-xs-12">
                   <label className="form-group-label">Ethnicity</label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["ethnicity"]}</span>
                 </div>
                 <div className="col-xs-12">
                   <div className="row override">
@@ -171,6 +264,7 @@ class PersonalInformation extends Component {
               <div className="form-group row no-margin">
                 <div className="col-xs-12">
                   <label className="form-group-label">Race</label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["race"]}</span>
                 </div>
                 <div className="col-xs-12">
                   <div className="row override" >
@@ -242,6 +336,7 @@ class PersonalInformation extends Component {
               <div className="form-group row no-margin">
                 <div className="col-xs-12">
                   <label className="form-group-label">Sex</label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["sex"]}</span>
                 </div>
                 <div className="col-xs-12">
                   <div className="row override">
@@ -278,6 +373,7 @@ class PersonalInformation extends Component {
                 <input type="number" className="form-control" id="height" placeholder="in-inches"
                   onChange={this.onHeightChange}
                 />
+                <span className="validn " style={{ color: "red" }}>{this.state.errors["height"]}</span>
               </div>
               <div className="clearfix"></div>
               <div className="horizontal-line"></div>
@@ -286,6 +382,7 @@ class PersonalInformation extends Component {
                 <input type="number" className="form-control" id="weight" placeholder="in-pounds"
                   onChange={this.onWeightChange}
                 />
+                <span className="validn " style={{ color: "red" }}>{this.state.errors["weight"]}</span>
               </div>
 
               <div className="clearfix"></div>

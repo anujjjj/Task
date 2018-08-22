@@ -14,12 +14,14 @@ class Introduction extends Component {
       description: "",
       avatar: '',
       isUploading: false,
-      progress: 0
+      progress: 0,
+      errors: {}
     }
 
     this.onNameChange = this.onNameChange.bind(this);
     this.onDescriptionChange = this.onDescriptionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleValidation = this.handleValidation.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +34,13 @@ class Introduction extends Component {
     }
   }
 
-  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+  handleUploadStart = () => {
+    this.setState({ isUploading: true, progress: 0 });
+    let errors = this.state.errors;
+    errors.profileUrl = "";
+    this.setState({ errors });
+
+  };
 
   handleProgress = (progress) => this.setState({ progress });
 
@@ -48,30 +56,67 @@ class Introduction extends Component {
 
   onNameChange(e) {
     this.setState({ name: e.target.value });
+    let errors = this.state.errors;
+    errors.name = "";
+    this.setState({ errors });
   }
 
   onDescriptionChange(e) {
     this.setState({ description: e.target.value });
+    let errors = this.state.errors;
+    errors.description = "";
+    this.setState({ errors });
+  }
+
+  handleValidation() {
+    let formIsValid = true;
+    let errors = {};
+    let name = this.state.name;
+    let description = this.state.description;
+    let profileUrl = this.state.profileUrl;
+
+    if (!name) {
+      formIsValid = false;
+      errors["name"] = "Cannot be empty";
+    }
+
+    if (!description) {
+      formIsValid = false;
+      errors["description"] = "Cannot be empty";
+    }
+    if (!profileUrl) {
+      formIsValid = false;
+      errors["profileUrl"] = "Upload a photo";
+    }
+
+    this.setState({ errors: errors });
+    return formIsValid;
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { profileUrl, name, description } = this.state;
-    const that = this;
 
-    if (name !== "") {
-      const info = {
-        name,
-        description,
-        profileUrl
-      }
-      localStorage.setItem("info", JSON.stringify(info));
-      this.props.history.push({
-        pathname: '/personal_information',
-        state: {
-          info
+    if (!this.handleValidation()) {
+      alert("Form has errors");
+    }
+    else {
+      const { profileUrl, name, description } = this.state;
+      const that = this;
+
+      if (name !== "") {
+        const info = {
+          name,
+          description,
+          profileUrl
         }
-      });
+        localStorage.setItem("info", JSON.stringify(info));
+        this.props.history.push({
+          pathname: '/personal_information',
+          state: {
+            info
+          }
+        });
+      }
     }
   }
 
@@ -98,8 +143,10 @@ class Introduction extends Component {
                       onUploadSuccess={this.handleUploadSuccess}
                       onProgress={this.handleProgress}
                     />
+                    <span className="validn " style={{ color: "red", fontWeight: "300" }} > {this.state.errors["profileUrl"]}</span>
                   </label>
                 </div>
+
                 <div class="col-sm-9">
                   <label for="name" className="form-group-label">Your Name </label>
                   <input
@@ -110,6 +157,7 @@ class Introduction extends Component {
                     onChange={this.onNameChange}
                   />
                 </div>
+                <span className="validn " style={{ color: "red" }}>{this.state.errors["name"]}</span>
                 <div className="clearfix"></div>
               </div>
               <div className="form-group">
@@ -120,6 +168,7 @@ class Introduction extends Component {
                     onChange={this.onDescriptionChange}
                   />
                 </div>
+                <span className="validn " style={{ color: "red" }}>{this.state.errors["description"]}</span>
                 <div className="clearfix"></div>
               </div>
               <button class="btn btn-primary" onClick={this.handleSubmit}>Proceed</button>

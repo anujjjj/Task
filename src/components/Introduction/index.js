@@ -131,7 +131,12 @@ class Introduction extends Component {
               <div className="form-group">
                 <div className="col-sm-3">
                   <label >
-                    <img src={this.state.profileUrl ? this.state.profileUrl : logo} alt="Avatar" className="avatar" />
+
+                    <div>
+                      {this.state.isUploading ?
+                        <div className="loader"></div> : <img src={this.state.profileUrl ? this.state.profileUrl : logo} alt="Avatar" className="avatar" />
+                      }
+                    </div>
                     <FileUploader
                       hidden
                       accept="image/*"
@@ -146,6 +151,8 @@ class Introduction extends Component {
                     <span className="validn " style={{ color: "red", fontWeight: "300" }} > {this.state.errors["profileUrl"]}</span>
                   </label>
                 </div>
+
+
 
                 <div class="col-sm-9">
                   <label for="name" className="form-group-label">Your Name </label>
@@ -175,7 +182,7 @@ class Introduction extends Component {
             </form>
           </div>
         </div>
-      </div>
+      </div >
 
     );
   }

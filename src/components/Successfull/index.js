@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
 
 class Successfull extends Component {
   render() {
     return (
       <div>
         <h5 style={{ color: "#009900" }}>Congratulations , your registration is completed</h5>
+
       </div>
     );
   }

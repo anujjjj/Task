@@ -22,7 +22,7 @@ class AppLayout extends Component {
               <Route path="/introduction" component={Introduction} exact={true} />
               <Route path="/personal_information" component={PersonalInformation} exact={true} />
               <Route path="/successfull" component={Successfull} exact={true} />
-              <Redirect to="/introduction" from="/" />
+              <Redirect to="/introduction" from="/" exact={true} />
               <Route path="*" component={NotFound} />
             </Switch>
           </React.Fragment>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loader from 'react-loader-spinner';
+
 
 class Successfull extends Component {
   render() {

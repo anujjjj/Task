@@ -18,7 +18,12 @@
 .form-group-label {
   float: left;
   font-weight: 400;
-  margin: 4px 0px 8px 0px;
+  margin: 4px 6px 8px 0px;
+}
+
+.validn {
+  float: left;
+  margin-top: 4px;
 }
 
 textarea::-webkit-input-placeholder {

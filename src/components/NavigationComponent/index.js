@@ -29,8 +29,8 @@ class NavigationComponent extends PureComponent {
             </NavItem>
           </LinkContainer>
 
-          <LinkContainer to="/personal_information">
-            <NavItem eventKey={2} id="tab2">
+          <LinkContainer to="/personal_information" disabled={!(localStorage.getItem("info"))}>
+            <NavItem eventKey={2} id="tab2" >
               <span className="glyphicon glyphicon-ok" ></span>
               Personal Information
             </NavItem>

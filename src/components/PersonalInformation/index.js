@@ -129,7 +129,7 @@ class PersonalInformation extends Component {
     }
     if (!height) {
       formIsValid = false;
-      errors["height"] = "Please select an option";
+      errors["height"] = "Cannot be empty";
     }
 
     else if (height <= 0) {
@@ -139,7 +139,7 @@ class PersonalInformation extends Component {
 
     if (!weight) {
       formIsValid = false;
-      errors["weight"] = "Please select an option";
+      errors["weight"] = "Cannot be empty";
     }
 
     else if (weight <= 0) {
@@ -202,10 +202,10 @@ class PersonalInformation extends Component {
               <div className="form-group">
                 <div className="col-sm-6 col-xs-12">
                   <label for="state" className="form-group-label">State</label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["state"]}</span>
                   <input type="text" class="form-control" id="state"
                     onChange={this.onStateChange}
                   />
-                  <span className="validn " style={{ color: "red" }}>{this.state.errors["state"]}</span>
                 </div>
               </div>
               <div className="clearfix"></div>
@@ -214,10 +214,11 @@ class PersonalInformation extends Component {
               <div className="form-group">
                 <div className="col-sm-6 col-xs-12" >
                   <label for="age" className="form-group-label">Age</label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["age"]}</span>
                   <input type="number" className="form-control" id="age"
                     onChange={this.onAgeChange}
                   />
-                  <span className="validn " style={{ color: "red" }}>{this.state.errors["age"]}</span>
+
                 </div>
               </div>
               <div className="clearfix"></div>
@@ -370,19 +371,19 @@ class PersonalInformation extends Component {
 
               <div className="col-sm-6 col-xs-12">
                 <label className="form-group-label">Height</label>
+                <span className="validn " style={{ color: "red" }}>{this.state.errors["height"]}</span>
                 <input type="number" className="form-control" id="height" placeholder="in-inches"
                   onChange={this.onHeightChange}
                 />
-                <span className="validn " style={{ color: "red" }}>{this.state.errors["height"]}</span>
               </div>
               <div className="clearfix"></div>
               <div className="horizontal-line"></div>
               <div className="col-sm-6 col-xs-12">
                 <label for="state" className="form-group-label">Weight</label>
+                <span className="validn " style={{ color: "red" }}>{this.state.errors["weight"]}</span>
                 <input type="number" className="form-control" id="weight" placeholder="in-pounds"
                   onChange={this.onWeightChange}
                 />
-                <span className="validn " style={{ color: "red" }}>{this.state.errors["weight"]}</span>
               </div>
 
               <div className="clearfix"></div>

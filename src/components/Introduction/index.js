@@ -156,6 +156,7 @@ class Introduction extends Component {
 
                 <div class="col-sm-9">
                   <label for="name" className="form-group-label">Your Name </label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["name"]}</span>
                   <input
                     id="name"
                     type="text"
@@ -164,21 +165,23 @@ class Introduction extends Component {
                     onChange={this.onNameChange}
                   />
                 </div>
-                <span className="validn " style={{ color: "red" }}>{this.state.errors["name"]}</span>
+
                 <div className="clearfix"></div>
               </div>
               <div className="form-group">
                 <div className="col-xs-12">
                   <label for="description" className="form-group-label">Write a short description about yourself</label>
+                  <span className="validn " style={{ color: "red" }}>{this.state.errors["description"]}</span>
                   <textarea rows="4" class="form-control" placeholder="May be you can write about your goals and motivations"
                     value={this.state.description}
                     onChange={this.onDescriptionChange}
                   />
                 </div>
-                <span className="validn " style={{ color: "red" }}>{this.state.errors["description"]}</span>
+
                 <div className="clearfix"></div>
               </div>
-              <button class="btn btn-primary" onClick={this.handleSubmit}>Proceed</button>
+              <button class="btn btn-primary" onClick={this.handleSubmit}
+              >Proceed</button>
             </form>
           </div>
         </div>
